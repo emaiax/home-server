@@ -3,5 +3,5 @@
 To install:
 
 ```
-$ wget -Oq - https://raw.githubusercontent.com/emaiax/home-server/main/install.sh | bash -
+wget -qO - https://raw.githubusercontent.com/emaiax/home-server/main/install.sh | bash -
 ```
