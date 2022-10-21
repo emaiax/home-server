@@ -60,10 +60,17 @@ sudo apt-get install -y git openssh-server
 
 sudo systemctl restart ssh
 
-ohai "Your home-server will be installed at $HOMESERVER_PATH"
+if [ -d "$HOMESERVER_PATH" ];
+then
+  ohai "Your home-server is already installed at $HOMESERVER_PATH"
+  ohai "Updating home-server repo"
+  cd $HOMESERVER_PATH && git pull
+else
+  ohai "Your home-server will be installed at $HOMESERVER_PATH"
+  ohai "Cloning home-server repo"
 
-ohai "Cloning home-server repo"
-git clone https://github.com/emaiax/home-server $HOMESERVER_PATH
+  git clone https://github.com/emaiax/home-server $HOMESERVER_PATH
+fi
 
 ohai "Cleaning up..."
 sudo apt-get autoclean && sudo apt-get autoremove
