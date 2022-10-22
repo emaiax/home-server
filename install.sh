@@ -64,7 +64,19 @@ sudo apt-get install -y \
   git \
   openssh-server
 
-sudo systemctl restart ssh
+ohai "Set your hostname (currently is '$(hostname)', leave it blank to keep as is):"
+read hostname </dev/tty
+
+if [ -z "$hostname" ];
+then
+  ohai "Alright, we'll keep your hostname as '$(hostname)'"
+else
+  ohai "Cool, we're changing your hostname to '$hostname'"
+  
+  sudo hostnamectl set-hostname $hostname
+fi
+
+ohai "Your home-server will be available on $(hostname).local inside your LAN"
 
 if [ -d "$HOMESERVER_PATH" ];
 then
