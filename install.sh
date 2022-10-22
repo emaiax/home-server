@@ -2,6 +2,11 @@
 #
 # some functions were gracefully copied from https://github.com/Homebrew/install/blob/master/install.sh
 #
+set -e
+
+# invalidate sudo
+sudo -k
+
 HOMESERVER_PATH=~/.homeserver
 
 # string formatters
@@ -47,8 +52,6 @@ abort() {
   exit 1
 }
 
-# invalidate sudo
-sudo -k
 ohai "sudo is required to proceed"
 sudo -v
 
@@ -78,5 +81,5 @@ sudo apt-get autoclean && sudo apt-get autoremove
 # invalidate sudo
 sudo -k
 
-ohai "You can SSH into your home-server now."
-ohai "We're ready to go."
+ohai "You can SSH into your home-server now"
+ohai "We're ready to go!"
