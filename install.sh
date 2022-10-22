@@ -58,8 +58,11 @@ sudo -v
 ohai "Updating packages"
 sudo apt-get update -y
 
-ohai "Installing dependencies (git, ssh)"
-sudo apt-get install -y git openssh-server
+ohai "Installing dependencies (avahi, git, ssh)"
+sudo apt-get install -y \
+  avahi-daemon \
+  git \
+  openssh-server
 
 sudo systemctl restart ssh
 
@@ -77,6 +80,10 @@ fi
 
 ohai "Cleaning up..."
 sudo apt-get autoclean && sudo apt-get autoremove
+
+ohai "Restarting services..."
+sudo systemctl restart avahi-daemon
+sudo systemctl restart ssh
 
 # invalidate sudo
 sudo -k
