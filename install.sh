@@ -64,6 +64,9 @@ sudo apt-get install -y \
   git \
   openssh-server
 
+# read uses the standard input by default. when you use the pipe, standard input is the pipe, not the terminal
+# https://stackoverflow.com/a/69665025
+#
 ohai "Set your hostname (currently is '$(hostname)', leave it blank to keep as is):"
 read hostname </dev/tty
 
