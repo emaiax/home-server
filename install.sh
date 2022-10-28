@@ -94,7 +94,7 @@ else
 fi
 
 ohai "Cleaning up..."
-sudo apt-get autoclean && sudo apt-get autoremove
+sudo apt-get autoclean -y && sudo apt-get autoremove -y
 
 ohai "Restarting services..."
 sudo systemctl restart avahi-daemon
