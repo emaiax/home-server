@@ -1,0 +1,37 @@
+---
+- name: Upgrade and update repository index
+  become: true
+  package:
+    upgrade: "yes"
+    update_cache: "yes"
+
+- name: Install packages
+  become: true
+  package:
+    name:
+      - bat
+      - curl
+      - jq
+      - make
+      - samba
+      - software-properties-common
+      - vim-tiny
+      - tldr
+      - watch
+    state: latest
+    update_cache: yes
+
+- name: Create local symlinks folder
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Create packages symlinks
+  ansible.builtin.file:
+    src: "/bin/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.local/bin/{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "batcat", dest: "cat" }
+    - { src: "vim.tiny", dest: "vim" }
