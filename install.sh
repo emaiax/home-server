@@ -7,6 +7,7 @@ set -e
 # invalidate sudo
 sudo -k
 
+ENV_FILE=~/.env
 HOMESERVER_PATH=~/.homeserver
 
 # string formatters
@@ -81,10 +82,18 @@ fi
 
 ohai "Your home-server will be available on '$(hostname).local' inside your LAN"
 
+if [ ! -f "$ENV_FILE" ];
+then
+  ohai "Added home-server '.env"
+
+  echo "HOMESERVER_PATH=$HOMESERVER_PATH" > $ENV_FILE
+fi
+
 if [ -d "$HOMESERVER_PATH" ];
 then
   ohai "Your home-server is already installed at $HOMESERVER_PATH"
   ohai "Updating home-server repo"
+
   cd $HOMESERVER_PATH && git pull
 else
   ohai "Your home-server will be installed at $HOMESERVER_PATH"
