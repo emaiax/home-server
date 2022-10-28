@@ -1,0 +1,3 @@
+---
+avahi_aliases_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/avahi-aliases"
+avahi_aliases_bin_path: /usr/local/bin

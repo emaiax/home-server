@@ -1,0 +1,16 @@
+---
+- name: Clone avahi-aliases
+  ansible.builtin.git:
+    repo: https://github.com/emaiax/avahi-aliases.git
+    dest: "{{ avahi_aliases_path }}"
+    force: yes
+    single_branch: yes
+    version: master
+  register: avahi_repo
+
+- name: Install avahi-aliases
+  ansible.builtin.shell: make install
+  become: true
+  args:
+    chdir: "{{ avahi_aliases_path }}"
+  when: avahi_repo.changed
