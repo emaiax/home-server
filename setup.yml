@@ -6,3 +6,4 @@
     - base
     - avahi
     - docker
+    - virtualbox

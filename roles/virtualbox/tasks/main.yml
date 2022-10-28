@@ -1,0 +1,7 @@
+---
+- name: Adding user to "vboxsf" group
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    groups: vboxsf
+    append: yes
+  when: ansible_product_name == "VirtualBox"
