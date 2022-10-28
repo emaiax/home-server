@@ -1,0 +1,12 @@
+---
+services: []
+
+container_default_opts:
+  pull: true
+  version: latest
+  auto_remove: true
+  restart_policy: unless-stopped
+  command_handling: correct
+  ports: []
+  command: []
+  volumes: []

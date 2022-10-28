@@ -1,0 +1,28 @@
+---
+- name: Find services to deploy
+  tags: deploy-services
+  include_vars: "{{ item }}.yml"
+  with_items: "{{ services }}"
+
+- name: Register services to deploy
+  tags: deploy-services
+  set_fact:
+    docker_services: "{{ services }}"
+
+- name: Deploying service
+  tags: deploy-services
+  docker_container:
+    name: "{{ service.name }}"
+    image: "{{ service.image }}:{{ service.version }}"
+    state: started
+    restart_policy: "{{ service.restart_policy }}"
+    ports: "{{ service.ports }}"
+    command: "{{ service.command }}"
+    volumes: "{{ service.volumes }}"
+    labels: "{{ service.labels }}"
+  with_items: "{{ docker_services }}"
+  vars:
+    service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"
+  notify:
+    - clean_avahi_aliases
+    - update_avahi_aliases
