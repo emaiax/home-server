@@ -84,9 +84,16 @@ ohai "Your home-server will be available on '$(hostname).local' inside your LAN"
 
 if [ ! -f "$ENV_FILE" ];
 then
-  ohai "Added home-server '.env"
+  touch $ENV_FILE
 
-  echo "HOMESERVER_PATH=$HOMESERVER_PATH" > $ENV_FILE
+  echo "PUID=$(id -u)" >> $ENV_FILE
+  echo "PGID=$(id -g)" >> $ENV_FILE
+  echo "TZ=$(cat /etc/timezone)" >> $ENV_FILE
+  echo "HOMESERVER_PATH=$HOMESERVER_PATH" >> $ENV_FILE
+
+  ohai "Added home-server '.env'"
+else
+  ohai "Home-server '.env' already exists"
 fi
 
 if [ -d "$HOMESERVER_PATH" ];
