@@ -79,7 +79,7 @@ else
   sudo hostnamectl set-hostname $hostname
 fi
 
-ohai "Your home-server will be available on $(hostname).local inside your LAN"
+ohai "Your home-server will be available on '$(hostname).local' inside your LAN"
 
 if [ -d "$HOMESERVER_PATH" ];
 then
