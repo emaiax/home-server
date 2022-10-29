@@ -3,9 +3,7 @@ services: []
 
 container_default_opts:
   pull: true
-  version: latest
-  recreate: true
-  auto_remove: true
+  state: started 
   restart_policy: unless-stopped
   command_handling: correct
   env: {}

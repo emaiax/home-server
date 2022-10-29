@@ -1,7 +1,8 @@
 ---
 traefik:
   name: traefik
-  image: traefik
+  image: traefik:latest
+  recreate: true
   env:
     TZ: "{{ TZ }}"
     PUID: "{{ PUID | string }}"
