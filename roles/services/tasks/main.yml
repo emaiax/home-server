@@ -13,7 +13,7 @@
   tags: deploy-services
   docker_container:
     name: "{{ service.name }}"
-    image: "{{ service.image }}:{{ service.version }}"
+    image: "{{ service.image }}"
     state: started
     restart_policy: "{{ service.restart_policy }}"
     env: "{{ service.env }}"
