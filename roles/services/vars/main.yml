@@ -1,3 +1,10 @@
 ---
+TZ: "{{ remote_envfile['TZ'] }}"
+PUID: "{{ remote_envfile['PUID'] }}"
+PGID: "{{ remote_envfile['PGID'] }}"
+
+services_path: "{{ ansible_env.HOME }}/services"
+services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
+
 services:
   - traefik

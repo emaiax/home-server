@@ -16,6 +16,7 @@
     image: "{{ service.image }}:{{ service.version }}"
     state: started
     restart_policy: "{{ service.restart_policy }}"
+    env: "{{ service.env }}"
     ports: "{{ service.ports }}"
     command: "{{ service.command }}"
     volumes: "{{ service.volumes }}"
