@@ -6,9 +6,9 @@ container_default_opts:
   pull: true
   state: started 
   restart_policy: unless-stopped
-  command_handling: correct
   env: {}
   ports: []
   command: []
   volumes: []
+  links: []
   labels: {}
