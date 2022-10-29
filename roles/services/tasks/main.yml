@@ -9,6 +9,16 @@
   set_fact:
     docker_services: "{{ services }}"
 
+- name: Use local config files to deploy
+  tags: never, deploy-local-config
+  ansible.builtin.copy:
+    src: "./config/{{ item }}/{{ item }}.yml"
+    dest: "{{ services_configs_path }}/{{ item }}/{{ item }}.yml"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    force: yes
+  with_items: "{{ services }}"
+
 - name: Deploy services
   tags: deploy-services
   docker_container:
