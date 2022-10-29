@@ -2,11 +2,6 @@
 traefik:
   name: traefik
   image: traefik:latest
-  recreate: true
-  env:
-    TZ: "{{ TZ }}"
-    PUID: "{{ PUID | string }}"
-    PGID: "{{ PGID | string }}"
   ports:
     - "80:80"
     - "8080:8080"
