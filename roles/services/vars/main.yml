@@ -9,6 +9,7 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 # dependencies must be started first
 #
 services:
+  - prometheus-fastcom-exporter
   - prometheus-speedtest-exporter
   - prometheus
   - traefik
