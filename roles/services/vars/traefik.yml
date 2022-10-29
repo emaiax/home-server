@@ -4,8 +4,8 @@ traefik:
   image: traefik
   env:
     TZ: "{{ TZ }}"
-    PUID: "{{ PUID }}"
-    PGID: "{{ PGID }}"
+    PUID: "{{ PUID | string }}"
+    PGID: "{{ PGID | string }}"
   ports:
     - "80:80"
     - "8080:8080"
