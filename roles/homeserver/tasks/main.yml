@@ -1,0 +1,8 @@
+---
+- name: Update home-server repo
+  ansible.builtin.git:
+    repo: https://github.com/emaiax/home-server.git
+    dest: "{{ remote_envfile['HOMESERVER_PATH'] }}"
+    force: yes
+    single_branch: yes
+    version: main
