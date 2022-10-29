@@ -1,0 +1,15 @@
+---
+- name: Clean avahi aliases
+  tags: deploy-services
+  become: true
+  ansible.builtin.shell: sudo truncate -s 0 /etc/avahi/aliases
+  listen: clean_avahi_aliases
+
+- name: Update avahi aliases
+  tags: deploy-services
+  become: true
+  ansible.builtin.shell: "avahi-aliases-add {{ item }}.{{ ansible_facts.nodename }}.local"
+  args:
+    chdir: "{{ avahi_aliases_bin_path }}"
+  with_items: "{{ docker_services }}"
+  listen: update_avahi_aliases
