@@ -9,7 +9,7 @@
   set_fact:
     docker_services: "{{ services }}"
 
-- name: Deploying service
+- name: Deploy services
   tags: deploy-services
   docker_container:
     name: "{{ service.name }}"
@@ -27,3 +27,4 @@
   notify:
     - clean_avahi_aliases
     - update_avahi_aliases
+
