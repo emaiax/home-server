@@ -1,10 +1,12 @@
 ---
 - name: Read remote env-file
+  tags: always
   slurp:
     src: "{{ ansible_env.HOME }}/.env"
   register: remote_envfile_encoded
 
 - name: Parse remote env-file
+  tags: always
   set_fact:
     remote_envfile: "{{
       remote_envfile_encoded['content'] |
@@ -16,6 +18,7 @@
     cacheable: yes
 
 - name: Cache remote env-file
+  tags: always
   set_fact:
     remote_envfile: "{{ dict(remote_envfile) }}"
     cacheable: yes
