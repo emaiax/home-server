@@ -15,6 +15,7 @@
     name: "{{ service.name }}"
     image: "{{ service.image }}"
     state: started
+    recreate: "{{ service.recreate | default(false) }}"
     restart_policy: "{{ service.restart_policy }}"
     env: "{{ service.env }}"
     ports: "{{ service.ports }}"
