@@ -6,8 +6,11 @@
 
 - name: Register services to deploy
   tags: deploy-services
+  vars:
+    reject_alias_service_regex: "^prometheus-(.*)-exporter$"
   set_fact:
     docker_services: "{{ services }}"
+    alias_docker_services: "{{ services | reject('match', reject_alias_service_regex) }}"
 
 - name: Use local config files to deploy
   tags: never, deploy-local-config
