@@ -1,0 +1,8 @@
+# services configs
+*/**.env
+
+# MacOS file
+.DS_Store
+
+# sandbox
+sandbox
