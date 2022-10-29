@@ -12,4 +12,5 @@ services:
   - prometheus-fastcom-exporter
   - prometheus-speedtest-exporter
   - prometheus
+  - grafana
   - traefik

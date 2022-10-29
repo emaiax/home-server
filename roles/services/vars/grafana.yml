@@ -1,0 +1,12 @@
+---
+prometheus:
+  name: grafana
+  image: grafana/grafana:latest
+  env: 
+    GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
+  ports:
+    - 3000:3000
+  links:
+    - prometheus
+  labels:
+    traefik.enabled: "true"
