@@ -7,5 +7,7 @@ prometheus:
   volumes:
     - "prometheus_data:/prometheus"
     - "{{ services_configs_path }}/prometheus:/etc/prometheus"
+  links:
+    - "prometheus-speedtest-exporter:speedtest-exporter"
   labels:
     traefik.enabled: "true"

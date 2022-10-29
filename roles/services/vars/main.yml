@@ -6,6 +6,9 @@ PGID: "{{ remote_envfile['PGID'] }}"
 services_path: "{{ ansible_env.HOME }}/services"
 services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 
+# dependencies must be started first
+#
 services:
-  - traefik
+  - prometheus-speedtest-exporter
   - prometheus
+  - traefik
