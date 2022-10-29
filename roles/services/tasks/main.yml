@@ -4,7 +4,7 @@
   include_vars: "{{ item }}.yml"
   with_items: "{{ services }}"
 
-- name: Register services to deploy
+- name: Register services to deploy and alias
   tags: deploy-services
   vars:
     reject_alias_service_regex: "^prometheus-(.*)-exporter$"
