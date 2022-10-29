@@ -8,3 +8,4 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 
 services:
   - traefik
+  - prometheus
