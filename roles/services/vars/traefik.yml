@@ -3,12 +3,11 @@ traefik:
   name: traefik
   image: traefik:latest
   ports:
-    - "80:80"
-    - "8080:8080"
-    - "443:443"
+    - 80:80
+    - 443:443
+    - 8080:8080
   volumes:
-    # So that Traefik can listen to the Docker events
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock # so that Traefik can listen to the Docker events
     - "{{ services_configs_path }}/traefik:/etc/traefik"
   labels:
     traefik.enabled: "true"
