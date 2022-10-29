@@ -1,5 +1,6 @@
 ---
 - name: Update home-server repo
+  tags: deploy-services, deploy-local-services
   ansible.builtin.git:
     repo: https://github.com/emaiax/home-server.git
     dest: "{{ remote_envfile['HOMESERVER_PATH'] }}"

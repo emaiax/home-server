@@ -4,7 +4,7 @@
   roles:
     - env
     - base
-    - homeserver
+    - repo
     - avahi
     - docker
     - services
