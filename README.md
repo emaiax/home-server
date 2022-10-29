@@ -25,3 +25,23 @@ Host *
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 ```
+
+#### Setup
+
+To run all the tasks, you can run the following statement:
+
+```
+ansible-playbook --ask-become-pass setup.yml
+```
+
+To only deploy the docker services, you can use the tags `deploy-services` as:
+
+```
+ansible-playbook --ask-become-pass setup.yml --tags "deploy-services"
+```
+
+If you want to deploy the services and use custom config files, you can use both tags `deploy-services, deploy-local-config` as:
+
+```
+ansible-playbook --ask-become-pass setup.yml --tags "deploy-services, deploy-local-config"
+```
