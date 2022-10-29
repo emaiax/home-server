@@ -20,6 +20,7 @@
     owner: "{{ PUID }}"
     group: "{{ PGID }}"
     force: yes
+  with_items: "{{ alias_docker_services }}"
 
 - name: Deploy services
   tags: deploy-services
