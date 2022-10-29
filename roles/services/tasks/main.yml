@@ -19,6 +19,14 @@
     force: yes
   with_items: "{{ services }}"
 
+- name: Services configs to deploy
+  tags: never, debug
+  debug:
+    msg: "{{ service }}"
+  with_items: "{{ docker_services }}"
+  vars:
+    service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"
+
 - name: Deploy services
   tags: deploy-services
   docker_container:
@@ -38,4 +46,3 @@
   notify:
     - clean_avahi_aliases
     - update_avahi_aliases
-
