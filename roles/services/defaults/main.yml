@@ -2,6 +2,7 @@
 services: []
 
 container_default_opts:
+  user: "{{ PUID }}:{{ PGID }}"
   pull: true
   state: started 
   restart_policy: unless-stopped
