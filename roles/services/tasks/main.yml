@@ -2,15 +2,13 @@
 - name: Find services to deploy
   tags: deploy-services
   include_vars: "{{ item }}.yml"
-  with_items: "{{ services }}"
+  with_items: "{{ support_services | union(services) }}"
 
 - name: Register services to deploy and alias
   tags: deploy-services
-  vars:
-    reject_alias_service_regex: "^prometheus-(.*)-exporter$"
   set_fact:
+    docker_support_services: "{{ support_services }}"
     docker_services: "{{ services }}"
-    alias_docker_services: "{{ services | reject('match', reject_alias_service_regex) }}"
 
 - name: Use local config files to deploy
   tags: never, deploy-local-config
@@ -20,7 +18,7 @@
     owner: "{{ PUID }}"
     group: "{{ PGID }}"
     force: yes
-  with_items: "{{ alias_docker_services }}"
+  with_items: "{{ docker_services }}"
 
 - name: Deploy services
   tags: deploy-services
@@ -37,7 +35,7 @@
     volumes: "{{ service.volumes }}"
     links: "{{ service.links }}"
     labels: "{{ service.labels }}"
-  with_items: "{{ docker_services }}"
+  with_items: "{{ docker_support_services | union(docker_services) }}"
   vars:
     service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"
   notify:
@@ -48,6 +46,6 @@
   tags: never, debug
   debug:
     msg: "{{ service }}"
-  with_items: "{{ docker_services }}"
+  with_items: "{{ docker_support_services | union(docker_services) }}"
   vars:
     service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"

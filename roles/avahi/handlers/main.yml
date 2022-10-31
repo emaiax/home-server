@@ -11,5 +11,5 @@
   ansible.builtin.shell: "avahi-aliases-add {{ item }}.{{ ansible_facts.nodename }}.local"
   args:
     chdir: "{{ avahi_aliases_bin_path }}"
-  with_items: "{{ alias_docker_services }}"
+  with_items: "{{ docker_services }}"
   listen: update_avahi_aliases
