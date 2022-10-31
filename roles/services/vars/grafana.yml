@@ -6,6 +6,8 @@ grafana:
     GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
   ports:
     - 3000:3000
+  volumes:
+    - "grafana_data:/var/lib/grafana" # database and plugins
   links:
     - prometheus
   labels:
