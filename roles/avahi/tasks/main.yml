@@ -8,6 +8,17 @@
     version: master
   register: avahi_repo
 
+- name: Install deps for avahi
+  become: true
+  package:
+    name:
+      - python3
+      - python3-avahi
+      - python3-dbus
+    state: latest
+    update_cache: yes
+  when: avahi_repo.changed
+
 - name: Install avahi-aliases
   ansible.builtin.shell: make install
   become: true
