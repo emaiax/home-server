@@ -28,11 +28,12 @@ Host *
 
 #### Setup
 
-This configuration relies on having both the SUDO and VAULT password files stored locally so you don't have to type it on every run.
+This configuration relies on having both the `sudo` and `vault` password files stored locally so you don't have to type it on every run.
 
 ```
 echo "your vault password" > .vault_password
 echo "your become password" > .become_password
+```
 
 To run all the tasks, you can run the following statement:
 
