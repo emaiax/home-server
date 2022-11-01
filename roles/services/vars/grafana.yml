@@ -11,4 +11,8 @@ grafana:
   links:
     - prometheus
   labels:
-    traefik.enabled: "true"
+    traefik.enable: "true"
+    traefik.http.routers.grafana.entrypoints: "http"
+    traefik.http.routers.grafana.rule: "Host(`grafana.{{ ansible_facts.nodename }}.local`)"
+    traefik.http.routers.grafana.service: "grafana@docker"
+    traefik.http.services.grafana.loadbalancer.server.port: "3000"
