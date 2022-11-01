@@ -1,4 +1,5 @@
 - name: Install docker and docker-compose
+  tags: docker, docker-daemon
   become: true
   package:
     name:
@@ -8,13 +9,14 @@
     update_cache: yes
 
 - name: Ensure docker daemon state
+  tags: docker, docker-daemon
   ansible.builtin.systemd:
     name: docker.service
     state: started
     enabled: yes
-  tags: docker, docker-daemon
 
-- name: Add user(s) to docker group
+- name: Add user to docker group
+  tags: docker, docker-daemon
   become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
