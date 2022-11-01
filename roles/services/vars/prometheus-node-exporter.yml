@@ -7,6 +7,8 @@ prometheus-node-exporter:
     - "--path.rootfs=/rootfs"
     - "--path.sysfs=/host/sys"
     - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    - "--collector.systemd"
+    - "--collector.processes"
   ports:
     - 9100:9100
   volumes:
