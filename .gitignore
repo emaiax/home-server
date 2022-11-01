@@ -6,3 +6,6 @@
 
 # sandbox
 sandbox
+
+# ignore password files, such as become_password and vault_password
+.*_password
