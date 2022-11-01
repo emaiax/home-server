@@ -1,11 +1,13 @@
 ---
 - name: Upgrade and update repository index
+  tags: base
   become: true
   package:
     upgrade: "yes"
     update_cache: "yes"
 
 - name: Install packages
+  tags: base
   become: true
   package:
     name:
@@ -13,7 +15,6 @@
       - curl
       - jq
       - make
-      - samba
       - software-properties-common
       - vim-tiny
       - tldr
@@ -22,12 +23,14 @@
     update_cache: yes
 
 - name: Create local symlinks folder
+  tags: base
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.local/bin"
     state: directory
     mode: "0755"
 
 - name: Create packages symlinks
+  tags: base
   ansible.builtin.file:
     src: "/bin/{{ item.src }}"
     dest: "{{ ansible_env.HOME }}/.local/bin/{{ item.dest }}"
