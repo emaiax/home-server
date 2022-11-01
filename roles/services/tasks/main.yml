@@ -38,7 +38,7 @@
     labels: "{{ service.labels }}"
   with_items: "{{ docker_support_services | union(docker_services) }}"
   vars:
-    service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"
+    service: "{{ container_default_opts | combine(lookup('vars', item)) }}"
   notify:
     - clean_avahi_aliases
     - update_avahi_aliases
@@ -49,4 +49,4 @@
     msg: "{{ service }}"
   with_items: "{{ docker_support_services | union(docker_services) }}"
   vars:
-    service: "{{ lookup('vars', item) | combine(container_default_opts, list_merge='keep') }}"
+    service: "{{ container_default_opts | combine(lookup('vars', item)) }}"
