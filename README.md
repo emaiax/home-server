@@ -28,20 +28,26 @@ Host *
 
 #### Setup
 
+This configuration relies on having both the SUDO and VAULT password files stored locally so you don't have to type it on every run.
+
+```
+echo "your vault password" > .vault_password
+echo "your become password" > .become_password
+
 To run all the tasks, you can run the following statement:
 
 ```
-ansible-playbook --ask-become-pass --ask-vault-pass setup.yml
+ansible-playbook setup.yml
 ```
 
 To only deploy the docker services, you can use the tags `deploy-services` as:
 
 ```
-ansible-playbook --ask-become-pass --ask-vault-pass setup.yml --tags "deploy-services"
+ansible-playbook setup.yml --tags "deploy-services"
 ```
 
 If you want to deploy the services and use custom config files, you can use both tags `deploy-services, deploy-local-config` as:
 
 ```
-ansible-playbook --ask-become-pass --ask-vault-pass setup.yml --tags "deploy-services, deploy-local-config"
+ansible-playbook setup.yml --tags "deploy-services, deploy-local-config"
 ```
