@@ -12,6 +12,7 @@
 
 - name: Use local config files to deploy
   tags: never, deploy-local-config
+  ignore_errors: true
   ansible.builtin.copy:
     src: "./config/{{ item }}/{{ item }}.yml"
     dest: "{{ services_configs_path }}/{{ item }}/{{ item }}.yml"
