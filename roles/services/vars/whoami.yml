@@ -1,0 +1,12 @@
+---
+whoami:
+  name: whoami
+  image: containous/whoami:latest
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  labels:
+    traefik.enable: "true"
+    traefik.http.routers.whoami.entrypoints: "http"
+    traefik.http.routers.whoami.rule: "Host(`whoami.{{ ansible_facts.nodename }}.local`)"
+    traefik.http.routers.whoami.service: "whoami@docker"
+    traefik.http.services.whoami.loadbalancer.server.port: "80"

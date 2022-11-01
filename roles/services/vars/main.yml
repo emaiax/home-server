@@ -15,4 +15,5 @@ support_services:
 services:
   - prometheus
   - grafana
+  - whoami
   - traefik
