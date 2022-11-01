@@ -16,4 +16,5 @@ services:
   - prometheus
   - grafana
   - whoami
+  - portainer
   - traefik

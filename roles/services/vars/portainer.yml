@@ -1,0 +1,19 @@
+---
+portainer:
+  name: portainer
+  image: portainer/portainer-ce:latest
+  command:
+    - "-H"
+    - "unix:///var/run/docker.sock"
+    - "--no-analytics"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  ports:
+    - 9000:9000
+    - 8000:8000
+  labels:
+    traefik.enable: "true"
+    traefik.http.routers.portainer.entrypoints: "http"
+    traefik.http.routers.portainer.rule: "Host(`portainer.{{ ansible_facts.nodename }}.local`)"
+    traefik.http.routers.portainer.service: "portainer@docker"
+    traefik.http.services.portainer.loadbalancer.server.port: "9000"
