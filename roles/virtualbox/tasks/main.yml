@@ -1,5 +1,6 @@
 ---
 - name: Adding user to "vboxsf" group
+  become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     groups: vboxsf
