@@ -1,0 +1,58 @@
+---
+- name: Install samba
+  tags: samba
+  become: true
+  package:
+    name:
+      - samba
+    state: latest
+    update_cache: yes
+
+- name: Create samba config
+  tags: samba
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/samba/smb.conf
+    content: |
+      [global]
+        server role = standalone server
+        dns proxy = no
+        disable netbios = yes
+        log file = /var/log/samba/log.%m
+        max log size = 1000
+        map to guest = bad user
+        usershare allow guests = no
+        hide dot files = no
+        unix extensions = no
+        allow insecure wide links = yes
+
+      [homes]
+        comment = Home Directories
+        browseable = no
+        guest ok = no
+        read only = no
+        create mask = 0700
+        directory mask = 0700
+        valid users = %S
+
+        wide links = yes
+        hide dot files = no
+
+- name: Create samba user w/ passwd
+  tags: samba
+  become: true
+  ansible.builtin.shell: (echo "{{ smb_passwd }}"; echo "{{ smb_passwd }}") | sudo smbpasswd -a {{ ansible_env.USER }} -s
+  vars:
+    smb_passwd: !vault |
+              $ANSIBLE_VAULT;1.1;AES256
+              65353931313963376339313961643739363063343336303737333564363333343935636466343438
+              3338356132363636366231653637313561643137353066660a313261633139663235386435643761
+              62326533333338323138356635373334343937363165613437346266396564336565376666646637
+              3363333663366632310a386633623764323732343337343134653361623364343064356331363266
+              3037
+
+- name: Reload samba
+  tags: samba
+  ansible.builtin.service:
+    name: samba
+    state: reloaded

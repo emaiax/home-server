@@ -4,6 +4,7 @@
   roles:
     - env
     - base
+    - samba
     - repo
     - avahi
     - docker
