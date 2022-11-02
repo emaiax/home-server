@@ -8,6 +8,7 @@ prometheus:
     - "prometheus_data:/prometheus"
     - "{{ services_configs_path }}/prometheus:/etc/prometheus"
   links:
+    - "prometheus-cadvisor-exporter:cadvisor-exporter"
     - "prometheus-node-exporter:node-exporter"
     - "prometheus-fastcom-exporter:fastcom-exporter"
     - "prometheus-speedtest-exporter:speedtest-exporter"

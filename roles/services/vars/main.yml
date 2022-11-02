@@ -9,6 +9,7 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 # prometheus exporters and other support services
 #
 support_services:
+  - prometheus-cadvisor-exporter
   - prometheus-node-exporter
   - prometheus-fastcom-exporter
   - prometheus-speedtest-exporter
