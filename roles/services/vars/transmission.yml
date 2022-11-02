@@ -1,0 +1,20 @@
+---
+transmission:
+  name: transmission
+  image: linuxserver/transmission:latest
+  env: 
+    TZ: "{{ TZ }}"
+    PUID: "{{ PUID }}"
+    PGID: "{{ PGID }}"
+  ports:
+    - 9091:9091
+    - 51413:51413
+    - 51413:51413/udp
+  volumes:
+    - "/home/{{ ansible_env.USER }}/Downloads:/downloads"
+  labels:
+    traefik.enable: "true"
+    traefik.http.routers.transmission.entrypoints: "http"
+    traefik.http.routers.transmission.rule: "Host(`transmission.{{ ansible_facts.nodename }}.local`)"
+    traefik.http.routers.transmission.service: "transmission@docker"
+    traefik.http.services.transmission.loadbalancer.server.port: "9091"

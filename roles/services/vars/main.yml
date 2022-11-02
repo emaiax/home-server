@@ -18,5 +18,6 @@ services:
   - prometheus
   - grafana
   - whoami
+  - transmission
   - portainer
   - traefik
