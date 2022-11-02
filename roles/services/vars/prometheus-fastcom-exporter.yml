@@ -2,5 +2,3 @@
 prometheus-fastcom-exporter:
   name: prometheus-fastcom-exporter
   image: caarlos0/fastcom-exporter:latest
-  ports:
-    - 9877:9877

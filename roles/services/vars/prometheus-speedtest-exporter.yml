@@ -2,5 +2,3 @@
 prometheus-speedtest-exporter:
   name: prometheus-speedtest-exporter
   image: caarlos0/speedtest-exporter:latest
-  ports:
-    - 9876:9876

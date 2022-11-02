@@ -9,8 +9,6 @@ prometheus-node-exporter:
     - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
     - "--collector.systemd"
     - "--collector.processes"
-  ports:
-    - 9100:9100
   volumes:
     - "/proc:/host/proc:ro"
     - "/sys:/host/sys:ro"
