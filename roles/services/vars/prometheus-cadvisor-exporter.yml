@@ -1,4 +1,6 @@
 ---
+# https://thesmarthomejourney.com/2022/08/01/fixing-cadvisor-cpu/
+#
 prometheus-cadvisor-exporter:
   name: prometheus-cadvisor-exporter
   image: gcr.io/cadvisor/cadvisor:latest
