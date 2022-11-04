@@ -2,15 +2,14 @@
 portainer:
   name: portainer
   image: portainer/portainer-ce:latest
-  command:
-    - "-H"
-    - "unix:///var/run/docker.sock"
-    - "--no-analytics"
+  command: "-H unix:///var/run/docker.sock"
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+    - "{{ services_path }}/portainer/data:/data"
   ports:
-    - 9000:9000
-    - 8000:8000
+    - 8000:8000 # UI
+    - 9000:9000 # HTTP
+    - 9443:9443 # HTTPS
   labels:
     traefik.enable: "true"
     traefik.http.routers.portainer.entrypoints: "http"
