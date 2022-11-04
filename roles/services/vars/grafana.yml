@@ -7,7 +7,7 @@ grafana:
   ports:
     - 3000:3000
   volumes:
-    - "grafana_data:/var/lib/grafana" # database and plugins
+    - "{{ services_path }}/grafana/data:/var/lib/grafana" # database and plugins
   links:
     - prometheus
   labels:
