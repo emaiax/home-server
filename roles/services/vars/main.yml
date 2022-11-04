@@ -3,9 +3,14 @@ TZ: "{{ remote_envfile['TZ'] }}"
 PUID: "{{ remote_envfile['PUID'] }}"
 PGID: "{{ remote_envfile['PGID'] }}"
 
-services_path: "{{ ansible_env.HOME }}/services"
+services_path: "{{ ansible_env.PWD }}"
 services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 
+# services that can use configs from a local copy or
+# store config/data in mounted volumes
+#
+configurable_services:
+  - traefik
 # prometheus exporters and other support services
 #
 support_services:

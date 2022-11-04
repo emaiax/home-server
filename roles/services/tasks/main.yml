@@ -10,16 +10,35 @@
     docker_support_services: "{{ support_services }}"
     docker_services: "{{ services }}"
 
-- name: Use local config files to deploy
-  tags: never, deploy-local-config
-  ignore_errors: true
+- name: Create services folders
+  tags: deploy-services, deploy-local-config
+  ansible.builtin.file:
+    path: "{{ services_path }}/{{ item }}/config"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    state: directory
+  with_items: "{{ configurable_services }}"
+
+- name: Copy config files to services folders
+  tags: deploy-services
   ansible.builtin.copy:
-    src: "./config/{{ item }}/{{ item }}.yml"
-    dest: "{{ services_configs_path }}/{{ item }}/{{ item }}.yml"
+    src: "{{ services_configs_path }}/{{ item }}/{{ item }}.yml"
+    dest: "{{ services_path }}/{{ item }}/config/{{ item }}.yml"
     owner: "{{ PUID }}"
     group: "{{ PGID }}"
     force: yes
-  with_items: "{{ docker_services }}"
+    remote_src: true
+  with_items: "{{ configurable_services }}"
+
+- name: Override services config files with local copy
+  tags: never, deploy-local-config
+  ansible.builtin.copy:
+    src: "./config/{{ item }}/{{ item }}.yml"
+    dest: "{{ services_path }}/{{ item }}/config/{{ item }}.yml"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    force: yes
+  with_items: "{{ configurable_services }}"
 
 - name: Deploy services
   tags: deploy-services
