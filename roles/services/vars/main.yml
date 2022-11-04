@@ -29,7 +29,10 @@ services_configs:
     folders:
       - data
 
-  # - portainer
+  - name: portainer
+    folders:
+      - data
+
   # - transmission
   # - plex
 
@@ -47,5 +50,5 @@ services:
   # - whoami
   # - plex
   # - transmission
-  # - portainer
+  - portainer
   - traefik
