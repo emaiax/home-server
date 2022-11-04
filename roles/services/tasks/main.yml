@@ -62,6 +62,18 @@
     - clean_avahi_aliases
     - update_avahi_aliases
 
+- name: Fix services folders permissions
+  tags: deploy-services
+  become: true
+  ansible.builtin.file:
+    path: "{{ services_path }}/{{ item }}"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    state: directory
+    recurse: true
+    force: true
+  with_items: "{{ configurable_services }}"
+
 - name: "[DEBUG] Services configs to deploy"
   tags: never, debug
   debug:
