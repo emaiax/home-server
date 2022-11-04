@@ -39,7 +39,11 @@ services_configs:
         src: transmission/settings.json
         dest: transmission/settings.json
 
-  # - plex
+  - name: plex
+    folders:
+      - config
+      - media
+      - transcode
 
 # prometheus exporters and other support services
 #
@@ -53,7 +57,7 @@ services:
   - prometheus
   - grafana
   # - whoami
-  # - plex
+  - plex
   - transmission
   - portainer
   - traefik
