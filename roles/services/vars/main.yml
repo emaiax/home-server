@@ -11,8 +11,6 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 #
 services_configs:
   - name: traefik
-    folders:
-      - . # creates "traefik/."
     configs:
       -
         src: traefik/traefik.yml
@@ -27,10 +25,13 @@ services_configs:
         src: prometheus/prometheus.yml
         dest: prometheus/config/prometheus.yml
 
+  - name: grafana
+    folders:
+      - data
+
   # - portainer
-  # - plex
-  # - grafana 
   # - transmission
+  # - plex
 
 # prometheus exporters and other support services
 #
@@ -42,7 +43,7 @@ support_services:
 
 services:
   - prometheus
-  # - grafana
+  - grafana
   # - whoami
   # - plex
   # - transmission
