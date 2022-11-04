@@ -1,0 +1,11 @@
+---
+- name: Find services to deploy
+  tags: deploy-services
+  include_vars: "{{ item }}.yml"
+  with_items: "{{ support_services | union(services) }}"
+
+- name: Register services to deploy and alias
+  tags: deploy-services
+  set_fact:
+    docker_services: "{{ services }}"
+    docker_support_services: "{{ support_services }}"

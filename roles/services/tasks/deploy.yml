@@ -1,0 +1,22 @@
+---
+- name: Deploy services
+  tags: deploy-services
+  docker_container:
+    name: "{{ service.name }}"
+    image: "{{ service.image }}"
+    state: started
+    command_handling: correct
+    recreate: "{{ service.recreate | default(false) }}"
+    restart_policy: "{{ service.restart_policy }}"
+    env: "{{ service.env }}"
+    ports: "{{ service.ports }}"
+    command: "{{ service.command }}"
+    volumes: "{{ service.volumes }}"
+    links: "{{ service.links }}"
+    labels: "{{ service.labels }}"
+  with_items: "{{ docker_support_services | union(docker_services) }}"
+  vars:
+    service: "{{ container_default_opts | combine(lookup('vars', item)) }}"
+  notify:
+    - clean_avahi_aliases
+    - update_avahi_aliases

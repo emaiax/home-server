@@ -1,4 +1,9 @@
 ---
+- name: Process services configs
+  tags: deploy-services, deploy-local-config
+  set_fact:
+    services_configs: "{{ [service_default_config] | product(services_configs) | map('combine') }}"
+
 - name: Create services folders
   tags: deploy-services, deploy-local-config
   ansible.builtin.file:
@@ -25,7 +30,7 @@
     - configs
 
 - name: Override services config files with local copy
-  tags: never, deploy-local-config, teste
+  tags: never, deploy-local-config
   ansible.builtin.copy:
     src: "./config/{{ item.1.src }}"
     dest: "{{ services_path }}/{{ item.1.dest }}"
