@@ -33,7 +33,12 @@ services_configs:
     folders:
       - data
 
-  # - transmission
+  - name: transmission
+    configs:
+      -
+        src: transmission/settings.json
+        dest: transmission/settings.json
+
   # - plex
 
 # prometheus exporters and other support services
@@ -49,6 +54,6 @@ services:
   - grafana
   # - whoami
   # - plex
-  # - transmission
+  - transmission
   - portainer
   - traefik
