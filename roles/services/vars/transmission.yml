@@ -11,7 +11,8 @@ transmission:
     - 51413:51413
     - 51413:51413/udp
   volumes:
-    - "/home/{{ ansible_env.USER }}/Downloads:/downloads"
+    - "{{ services_path }}/Downloads:/downloads"
+    - "{{ services_path }}/transmission:/config"
   labels:
     traefik.enable: "true"
     traefik.http.routers.transmission.entrypoints: "http"
