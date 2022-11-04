@@ -5,7 +5,7 @@ prometheus:
   ports:
     - 9090:9090
   volumes:
-    - "prometheus_data:/prometheus"
+    - "{{ services_path }}/prometheus/data:/prometheus"
     - "{{ services_path }}/prometheus/config:/etc/prometheus"
   links:
     - "prometheus-cadvisor-exporter:cadvisor-exporter"
