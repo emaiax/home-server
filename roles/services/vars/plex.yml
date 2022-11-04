@@ -10,9 +10,9 @@ plex:
     PLEX_CLAIM: "{{ remote_envfile['PLEX_CLAIM'] }}" # https://www.plex.tv/claim/
     ADVERTISE_IP: "http://plex.{{ ansible_facts.nodename }}.local"
   volumes:
-    - "~/plex/config:/config"
-    - "~/plex/media:/media"
-    - "~/plex/transcode:/transcode"
+    - "{{ services_path }}/plex/config:/config"
+    - "{{ services_path }}/plex/media:/media"
+    - "{{ services_path }}/plex/transcode:/transcode"
   ports:
     - 32400:32400
     - 1900:1900/udp
