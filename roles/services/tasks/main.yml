@@ -70,6 +70,7 @@
     owner: "{{ PUID }}"
     group: "{{ PGID }}"
     state: directory
+    mode: "0777"
     recurse: true
     force: true
   with_items: "{{ configurable_services }}"

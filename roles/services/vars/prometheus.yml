@@ -2,7 +2,6 @@
 prometheus:
   name: prometheus
   image: prom/prometheus:latest
-  user: "{{ PUID }}:{{ PGID }}"
   ports:
     - 9090:9090
   volumes:
