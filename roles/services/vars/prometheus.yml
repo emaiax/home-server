@@ -6,7 +6,7 @@ prometheus:
     - 9090:9090
   volumes:
     - "prometheus_data:/prometheus"
-    - "{{ services_configs_path }}/prometheus:/etc/prometheus"
+    - "{{ services_path }}/prometheus/config:/etc/prometheus"
   links:
     - "prometheus-cadvisor-exporter:cadvisor-exporter"
     - "prometheus-node-exporter:node-exporter"

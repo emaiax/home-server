@@ -10,6 +10,7 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 # store config/data in mounted volumes
 #
 configurable_services:
+  - prometheus
   - traefik
 # prometheus exporters and other support services
 #
