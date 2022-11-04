@@ -8,7 +8,7 @@ traefik:
     - 8080:8080
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock # so that Traefik can listen to the Docker events
-    - "{{ services_configs_path }}/traefik:/etc/traefik"
+    - "{{ services_path }}/traefik/config:/etc/traefik"
   labels:
     traefik.enable: "true"
     traefik.http.routers.api.entrypoints: "http"
