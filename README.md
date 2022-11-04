@@ -35,6 +35,12 @@ echo "your vault password" > .vault_password
 echo "your become password" > .become_password
 ```
 
+It's also recommended to change the permissions of these password files as they are plain texts.
+
+```
+chmod 700 .vault_password .become_password
+```
+
 To run all the tasks, you can run the following statement:
 
 ```
