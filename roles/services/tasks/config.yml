@@ -1,0 +1,53 @@
+---
+- name: Create services folders
+  tags: deploy-services, deploy-local-config
+  ansible.builtin.file:
+    path: "{{ services_path }}/{{ item.0.name }}/{{ item.1 }}"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    state: directory
+    force: yes
+  with_subelements:
+    - "{{ services_configs }}"
+    - folders
+
+- name: Copy config files to services folders
+  tags: deploy-services
+  ansible.builtin.copy:
+    src: "{{ services_configs_path }}/{{ item.1.src }}"
+    dest: "{{ services_path }}/{{ item.1.dest }}"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    force: yes
+    remote_src: true
+  with_subelements:
+    - "{{ services_configs }}"
+    - configs
+
+- name: Override services config files with local copy
+  tags: never, deploy-local-config, teste
+  ansible.builtin.copy:
+    src: "./config/{{ item.1.src }}"
+    dest: "{{ services_path }}/{{ item.1.dest }}"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    force: yes
+  with_subelements:
+    - "{{ services_configs }}"
+    - configs
+
+# TODO: check containers permissions instead of making 0777
+- name: Fix services folders permissions
+  tags: deploy-services
+  become: true
+  ansible.builtin.file:
+    path: "{{ services_path }}/{{ item.0.name }}"
+    owner: "{{ PUID }}"
+    group: "{{ PGID }}"
+    state: directory
+    mode: "0777"
+    recurse: true
+    force: true
+  with_subelements:
+    - "{{ services_configs }}"
+    - folders

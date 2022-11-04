@@ -1,4 +1,6 @@
 ---
+- import_tasks: config.yml
+
 - name: Find services to deploy
   tags: deploy-services
   include_vars: "{{ item }}.yml"
@@ -9,36 +11,6 @@
   set_fact:
     docker_support_services: "{{ support_services }}"
     docker_services: "{{ services }}"
-
-- name: Create services folders
-  tags: deploy-services, deploy-local-config
-  ansible.builtin.file:
-    path: "{{ services_path }}/{{ item }}/config"
-    owner: "{{ PUID }}"
-    group: "{{ PGID }}"
-    state: directory
-  with_items: "{{ configurable_services }}"
-
-- name: Copy config files to services folders
-  tags: deploy-services
-  ansible.builtin.copy:
-    src: "{{ services_configs_path }}/{{ item }}/{{ item }}.yml"
-    dest: "{{ services_path }}/{{ item }}/config/{{ item }}.yml"
-    owner: "{{ PUID }}"
-    group: "{{ PGID }}"
-    force: yes
-    remote_src: true
-  with_items: "{{ configurable_services }}"
-
-- name: Override services config files with local copy
-  tags: never, deploy-local-config
-  ansible.builtin.copy:
-    src: "./config/{{ item }}/{{ item }}.yml"
-    dest: "{{ services_path }}/{{ item }}/config/{{ item }}.yml"
-    owner: "{{ PUID }}"
-    group: "{{ PGID }}"
-    force: yes
-  with_items: "{{ configurable_services }}"
 
 - name: Deploy services
   tags: deploy-services
@@ -61,19 +33,6 @@
   notify:
     - clean_avahi_aliases
     - update_avahi_aliases
-
-- name: Fix services folders permissions
-  tags: deploy-services
-  become: true
-  ansible.builtin.file:
-    path: "{{ services_path }}/{{ item }}"
-    owner: "{{ PUID }}"
-    group: "{{ PGID }}"
-    state: directory
-    mode: "0777"
-    recurse: true
-    force: true
-  with_items: "{{ configurable_services }}"
 
 - name: "[DEBUG] Services configs to deploy"
   tags: never, debug
