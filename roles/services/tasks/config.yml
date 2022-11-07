@@ -6,11 +6,13 @@
 
 - name: Create services folders
   tags: deploy-services, deploy-local-config
+  become: true
   ansible.builtin.file:
     path: "{{ services_path }}/{{ item.0.name }}/{{ item.1 }}"
     owner: "{{ PUID }}"
     group: "{{ PGID }}"
     state: directory
+    mode: "0777"
     force: yes
   with_subelements:
     - "{{ services_configs }}"
