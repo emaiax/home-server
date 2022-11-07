@@ -26,19 +26,19 @@ scrape_configs:
   - job_name: cadvisor-exporter
     metrics_path: /metrics
     static_configs:
-      - targets: ["cadvisor-exporter:8080"]
+      - targets: ["prometheus-cadvisor-exporter:8080"]
 
   - job_name: node-exporter
     metrics_path: /metrics
     static_configs:
-      - targets: ["node-exporter:9100"]
+      - targets: ["prometheus-node-exporter:9100"]
 
   - job_name: fastcom-exporter
     metrics_path: /metrics
     static_configs:
-      - targets: ["fastcom-exporter:9877"]
+      - targets: ["prometheus-fastcom-exporter:9877"]
 
   - job_name: speedtest-exporter
     metrics_path: /metrics
     static_configs:
-      - targets: ["speedtest-exporter:9876"]
+      - targets: ["prometheus-speedtest-exporter:9876"]
