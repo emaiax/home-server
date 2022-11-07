@@ -7,11 +7,6 @@ prometheus:
   volumes:
     - "{{ services_path }}/prometheus/data:/prometheus"
     - "{{ services_path }}/prometheus/config:/etc/prometheus"
-  links:
-    - "prometheus-cadvisor-exporter:cadvisor-exporter"
-    - "prometheus-node-exporter:node-exporter"
-    - "prometheus-fastcom-exporter:fastcom-exporter"
-    - "prometheus-speedtest-exporter:speedtest-exporter"
   labels:
     traefik.enable: "true"
     traefik.http.routers.prometheus.entrypoints: "http"

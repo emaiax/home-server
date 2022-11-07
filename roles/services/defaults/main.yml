@@ -11,9 +11,10 @@ container_default_opts:
   pull: true
   state: started 
   restart_policy: unless-stopped
+  networks:
+    - name: "{{ ansible_facts.nodename }}"
   env: {}
   ports: []
   command: []
   volumes: []
-  links: []
   labels: {}

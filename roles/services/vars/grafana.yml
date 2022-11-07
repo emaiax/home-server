@@ -8,8 +8,6 @@ grafana:
     - 3000:3000
   volumes:
     - "{{ services_path }}/grafana/data:/var/lib/grafana" # database and plugins
-  links:
-    - prometheus
   labels:
     traefik.enable: "true"
     traefik.http.routers.grafana.entrypoints: "http"

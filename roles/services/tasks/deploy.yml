@@ -1,7 +1,7 @@
 ---
 - name: Deploy services
   tags: deploy-services
-  docker_container:
+  community.docker.docker_container:
     name: "{{ service.name }}"
     image: "{{ service.image }}"
     state: started
@@ -9,10 +9,10 @@
     recreate: "{{ service.recreate | default(false) }}"
     restart_policy: "{{ service.restart_policy }}"
     env: "{{ service.env }}"
-    ports: "{{ service.ports }}"
     command: "{{ service.command }}"
+    networks: "{{ service.networks }}"
+    ports: "{{ service.ports }}"
     volumes: "{{ service.volumes }}"
-    links: "{{ service.links }}"
     labels: "{{ service.labels }}"
   with_items: "{{ docker_support_services | union(docker_services) }}"
   vars:
