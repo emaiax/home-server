@@ -48,6 +48,7 @@ services_configs:
 # prometheus exporters and other support services
 #
 support_services:
+  - prometheus-blackbox-exporter
   - prometheus-cadvisor-exporter
   - prometheus-node-exporter
   - prometheus-fastcom-exporter

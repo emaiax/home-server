@@ -42,3 +42,33 @@ scrape_configs:
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-speedtest-exporter:9876"]
+
+  - job_name: blackbox-exporter
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["prometheus-blackbox-exporter:9115"]
+
+  - job_name: blackbox-probes
+    metrics_path: /probe
+    params:
+      module: [http_2xx] # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+        - grafana:3000
+        - plex:32400/web/index.html
+        - portainer:9000
+        - prometheus:9090
+        - prometheus-cadvisor-exporter:8080
+        - prometheus-node-exporter:9100
+        - prometheus-fastcom-exporter:9877
+        - prometheus-speedtest-exporter:9876
+        - transmission:9091
+        - traefik:8080
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: prometheus-blackbox-exporter:9115 # The blackbox exporter's real hostname:port.

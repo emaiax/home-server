@@ -1,0 +1,4 @@
+---
+prometheus-blackbox-exporter:
+  name: prometheus-blackbox-exporter
+  image: prom/blackbox-exporter:master
