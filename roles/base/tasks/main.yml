@@ -13,6 +13,7 @@
     name:
       - bat
       - curl
+      - htop
       - jq
       - make
       - software-properties-common
@@ -36,5 +37,6 @@
     dest: "{{ ansible_env.HOME }}/.local/bin/{{ item.dest }}"
     state: link
   loop:
+    - { src: "htop", dest: "htop" }
     - { src: "batcat", dest: "cat" }
     - { src: "vim.tiny", dest: "vim" }
