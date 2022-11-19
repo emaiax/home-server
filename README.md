@@ -1,7 +1,10 @@
-![](https://blog.codinghorror.com/content/images/uploads/2012/10/6a0120a85dcdae970b017c327d5a4e970b-800wi.jpg)
+# home-server
 
-## home-server
+<h1 align="center">
+ <img width="480" src="https://blog.codinghorror.com/content/images/uploads/2012/10/6a0120a85dcdae970b017c327d5a4e970b-800wi.jpg">
+</h1>
 
+![]()
 **Hardware:** [Beelink GTR5 R9, AMD Ryzen 9 5900HX](https://pt.aliexpress.com/item/32753185927.html)
 
 **Compatibility:**
