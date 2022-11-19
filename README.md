@@ -13,7 +13,7 @@
 |--------|:-------:| :----------:|:----------------:|
 | Ubuntu | 22.04.1 LTS (Jammy Jellyfish) | x86_64 | ✅ |
 
-To install:
+## Install
 
 ```
 wget -qO - https://raw.githubusercontent.com/emaiax/home-server/main/install.sh | bash -
@@ -39,7 +39,7 @@ Host *
   IdentityFile ~/.ssh/id_ed25519
 ```
 
-#### Setup
+## Setup
 
 This configuration relies on having both the `sudo` and `vault` password files stored locally so you don't have to type it on every run.
 
@@ -48,7 +48,7 @@ echo "your vault password" > .vault_password
 echo "your become password" > .become_password
 ```
 
-It's also recommended to change the permissions of these password files as they are plain texts.
+It's also recommended to change the permissions of these password files as they are plain texts, so no one else has access to those passwords
 
 ```
 chmod 700 .vault_password .become_password
