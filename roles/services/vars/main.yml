@@ -21,8 +21,7 @@ services_configs:
       - config
       - data
     configs:
-      -
-        src: prometheus/prometheus.yml
+      - src: prometheus/prometheus.yml
         dest: prometheus/config/prometheus.yml
 
   - name: grafana
@@ -35,8 +34,7 @@ services_configs:
 
   - name: transmission
     configs:
-      -
-        src: transmission/settings.json
+      - src: transmission/settings.json
         dest: transmission/settings.json
 
   - name: plex
