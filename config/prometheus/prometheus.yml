@@ -22,31 +22,60 @@ scrape_configs:
     enable_http2: true
     static_configs:
       - targets: ["localhost:9090"]
-
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: prometheus
+        
   - job_name: cadvisor-exporter
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-cadvisor-exporter:8080"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}
 
   - job_name: node-exporter
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-node-exporter:9100"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}
 
   - job_name: fastcom-exporter
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-fastcom-exporter:9877"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}
 
   - job_name: speedtest-exporter
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-speedtest-exporter:9876"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}
 
   - job_name: blackbox-exporter
     metrics_path: /metrics
     static_configs:
       - targets: ["prometheus-blackbox-exporter:9115"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}
 
   - job_name: blackbox-probes
     metrics_path: /probe
@@ -70,5 +99,7 @@ scrape_configs:
         target_label: __param_target
       - source_labels: [__param_target]
         target_label: instance
+        regex: ^(.*):(.*)$
+        replacement: ${1}-probe
       - target_label: __address__
-        replacement: prometheus-blackbox-exporter:9115 # The blackbox exporter's real hostname:port.
+        replacement: prometheus-blackbox-exporter:9115 # The blackbox exporter's real hostname:port
