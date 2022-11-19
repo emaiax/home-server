@@ -55,7 +55,6 @@ support_services:
 services:
   - prometheus
   - grafana
-  # - whoami
   - plex
   - transmission
   - portainer
