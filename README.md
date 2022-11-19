@@ -1,4 +1,14 @@
+![](https://blog.codinghorror.com/content/images/uploads/2012/10/6a0120a85dcdae970b017c327d5a4e970b-800wi.jpg)
+
 ## home-server
+
+**Hardware:** [Beelink GTR5 R9, AMD Ryzen 9 5900HX](https://pt.aliexpress.com/item/32753185927.html)
+
+**Compatibility:**
+
+| Distro | Version | Arch       | Compatibility |
+|--------|:-------:| :----------:|:----------------:|
+| Ubuntu | 22.04.1 LTS (Jammy Jellyfish) | x86_64 | ✅ |
 
 To install:
 
