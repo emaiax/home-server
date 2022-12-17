@@ -43,6 +43,16 @@
     - "{{ services_configs }}"
     - configs
 
+- name: Replace tokens in config files
+  tags: deploy-services, deploy-local-config
+  ansible.builtin.lineinfile:
+    path: "{{ services_path }}/{{ item.1.file }}"
+    search_string: "{{ item.1.search }}"
+    line: "{{ item.1.value }}"
+  with_subelements:
+    - "{{ services_configs }}"
+    - replace
+
 # TODO: check containers permissions instead of making 0777
 - name: Fix services folders permissions
   tags: deploy-services
