@@ -7,3 +7,4 @@ watchtower:
     - /var/run/docker.sock:/var/run/docker.sock
   env:
     WATCHTOWER_CLEANUP: "true" # removes old/dangling images
+    WATCHTOWER_SCHEDULE: "0 0 4 * * *" # everyday at 4 am
