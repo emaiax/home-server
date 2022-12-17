@@ -5,6 +5,7 @@ services: []
 service_default_config:
   configs: []
   folders: ["."]
+  replace: []
 
 container_default_opts:
   # user: "{{ PUID }}"
