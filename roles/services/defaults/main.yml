@@ -10,7 +10,7 @@ service_default_config:
 container_default_opts:
   # user: "{{ PUID }}"
   pull: true
-  state: started 
+  state: started
   restart_policy: unless-stopped
   networks:
     - name: "{{ ansible_facts.nodename }}"
