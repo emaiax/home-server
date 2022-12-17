@@ -12,8 +12,7 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 services_configs:
   - name: traefik
     configs:
-      -
-        src: traefik/traefik.yml
+      - src: traefik/traefik.yml
         dest: traefik/traefik.yml
 
   - name: prometheus
