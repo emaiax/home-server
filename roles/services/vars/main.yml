@@ -22,6 +22,10 @@ services_configs:
     configs:
       - src: prometheus/prometheus.yml
         dest: prometheus/config/prometheus.yml
+    replace:
+      - file: prometheus/config/prometheus.yml
+        search: "watchtower_api_key"
+        value: "    bearer_token: {{ remote_envfile['WATCHTOWER_HTTP_API_TOKEN'] }}"
 
   - name: grafana
     folders:

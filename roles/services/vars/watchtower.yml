@@ -8,3 +8,5 @@ watchtower:
   env:
     WATCHTOWER_CLEANUP: "true" # removes old/dangling images
     WATCHTOWER_SCHEDULE: "0 0 4 * * *" # everyday at 4 am
+    WATCHTOWER_HTTP_API_TOKEN: "{{ remote_envfile['WATCHTOWER_HTTP_API_TOKEN'] }}"
+    WATCHTOWER_HTTP_API_METRICS: "true"
