@@ -9,9 +9,9 @@
 
 **Compatibility:**
 
-| Distro | Version | Arch       | Compatibility |
-|--------|:-------:| :----------:|:----------------:|
-| Ubuntu | 22.04.1 LTS (Jammy Jellyfish) | x86_64 | ✅ |
+| Distro |            Version            |  Arch  | Compatibility |
+| ------ | :---------------------------: | :----: | :-----------: |
+| Ubuntu | 22.04.1 LTS (Jammy Jellyfish) | x86_64 |      ✅       |
 
 ## Install
 
