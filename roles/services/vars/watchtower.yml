@@ -1,0 +1,9 @@
+---
+watchtower:
+  name: watchtower
+  image: containrrr/watchtower:latest
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+  env:
+    WATCHTOWER_CLEANUP: "true" # removes old/dangling images
