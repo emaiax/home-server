@@ -26,7 +26,7 @@ scrape_configs:
       - source_labels: [__address__]
         target_label: instance
         replacement: prometheus
-        
+
   - job_name: cadvisor-exporter
     metrics_path: /metrics
     static_configs:
