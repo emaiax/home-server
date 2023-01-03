@@ -91,19 +91,19 @@ scrape_configs:
   - job_name: blackbox-probes
     metrics_path: /probe
     params:
-      module: [http_2xx] # Look for a HTTP 200 response.
+      module: [http_2xx_or_4xx] # Look for a HTTP 200, 401 or 404 response.
     static_configs:
       - targets:
         - grafana:3000
-        - plex:32400/web/index.html
+        - plex:32400
         - portainer:9000
         - prometheus:9090
         - prometheus-cadvisor-exporter:8080
-        - prometheus-node-exporter:9100
         - prometheus-fastcom-exporter:9877
+        - prometheus-node-exporter:9100
         - prometheus-speedtest-exporter:9876
-        - transmission:9091
         - traefik:8080
+        - transmission:9091
         - watchtower:8080
 
     relabel_configs:
