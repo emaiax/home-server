@@ -1,0 +1,5 @@
+modules:
+  http_2xx_or_4xx:
+    prober: http
+    http:
+      valid_status_codes: [200, 401, 404]

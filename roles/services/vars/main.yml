@@ -15,6 +15,13 @@ services_configs:
       - src: traefik/traefik.yml
         dest: traefik/traefik.yml
 
+  - name: blackbox
+    folders:
+      - config
+    configs:
+      - src: blackbox/config.yml
+        dest: blackbox/config.yml
+
   - name: prometheus
     folders:
       - config

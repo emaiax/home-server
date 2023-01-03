@@ -2,3 +2,5 @@
 prometheus-blackbox-exporter:
   name: prometheus-blackbox-exporter
   image: prom/blackbox-exporter:master
+  volumes:
+    - "{{ services_path }}/blackbox:/etc/blackbox_exporter"
