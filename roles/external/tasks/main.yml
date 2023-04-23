@@ -1,0 +1,17 @@
+---
+- name: Create external mount folders
+  tags: external
+  become: true
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/external"
+    state: directory
+    mode: "0755"
+
+- name: Mount external device by UUID
+  tags: external
+  become: true
+  ansible.posix.mount:
+    path: "{{ ansible_env.HOME }}/external"
+    src: UUID=8d5e66a8-fede-47a4-8b18-5af049d2c49e
+    fstype: ext4
+    state: mounted
