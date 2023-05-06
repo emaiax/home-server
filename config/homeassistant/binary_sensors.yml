@@ -1,0 +1,11 @@
+binary_sensor:
+  - platform: ping
+    host: 192.168.168.1
+    name: "docker-gateway"
+    count: 3
+    scan_interval: 30
+  - platform: ping
+    host: 192.168.68.1
+    name: "router-gateway"
+    count: 3
+    scan_interval: 30
