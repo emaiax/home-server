@@ -15,10 +15,19 @@
     state: started
     enabled: yes
 
-- name: Create docker bridge network
+- name: Create bridge network "{{ ansible_facts.nodename }}"
   tags: docker, docker-network
   community.docker.docker_network:
     name: "{{ ansible_facts.nodename }}"
+
+- name: Create bridget network "dockerlan"
+  tags: docker, docker-network
+  community.docker.docker_network:
+    name: dockerlan
+    ipam_config:
+      - subnet: 192.168.168.0/26
+        gateway: 192.168.168.1
+        iprange: 192.168.168.0/26
 
 - name: Add user to docker group
   tags: docker, docker-daemon
