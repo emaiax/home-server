@@ -1,0 +1,22 @@
+---
+homeassistant:
+  name: homeassistant
+  image: homeassistant/home-assistant:stable
+  env:
+    TZ: "{{ TZ }}"
+    PUID: "{{ PUID }}"
+    PGID: "{{ PGID }}"
+  ports:
+    - 8123:8123
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - "{{ services_path }}/homeassistant/config:/config"
+  networks:
+    - name: dockerlan
+    - name: "{{ ansible_facts.nodename }}"
+  labels:
+    traefik.enable: "true"
+    traefik.http.routers.homeassistant.entrypoints: "http"
+    traefik.http.routers.homeassistant.rule: "Host(`homeassistant.{{ ansible_facts.nodename }}.local`)"
+    traefik.http.routers.homeassistant.service: "homeassistant@docker"
+    traefik.http.services.homeassistant.loadbalancer.server.port: "8123"

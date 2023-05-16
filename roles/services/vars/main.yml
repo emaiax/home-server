@@ -53,6 +53,13 @@ services_configs:
       - media
       - transcode
 
+  - name: homeassistant
+    folders:
+      - config
+    configs:
+      - src: homeassistant/binary_sensors.yml
+        dest: homeassistant/config/binary_sensors.yaml
+
 # prometheus exporters and other support services
 #
 support_services:
@@ -64,6 +71,7 @@ support_services:
   - prometheus-speedtest-exporter
 
 services:
+  - homeassistant
   - prometheus
   - grafana
   - plex
