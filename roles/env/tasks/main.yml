@@ -14,10 +14,10 @@
       split('\n') |
       reject('match', '^$') |
       map('split', '=')
-    }}"
+      }}"
     cacheable: yes
 
-- name: Cache remote env-file
+- name: "Cache remote env-file"
   tags: always
   set_fact:
     remote_envfile: "{{ dict(remote_envfile) }}"

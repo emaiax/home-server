@@ -2,7 +2,7 @@
 transmission:
   name: transmission
   image: linuxserver/transmission:latest
-  env: 
+  env:
     TZ: "{{ TZ }}"
     PUID: "{{ PUID }}"
     PGID: "{{ PGID }}"
