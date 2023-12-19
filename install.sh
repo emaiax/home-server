@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 #
 # some functions were gracefully copied from https://github.com/Homebrew/install/blob/master/install.sh
 #
