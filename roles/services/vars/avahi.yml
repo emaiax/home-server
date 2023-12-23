@@ -1,0 +1,11 @@
+---
+avahi:
+  name: avahi
+  image: flungo/avahi
+  env:
+    TZ: "{{ TZ }}"
+    SERVER_HOST_NAME: "{{ ansible_facts.nodename }}"
+  networks:
+    - name: host
+  volumes:
+    - "{{ services_path }}/avahi:/etc/avahi/services"
