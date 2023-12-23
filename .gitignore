@@ -4,6 +4,9 @@
 # MacOS file
 .DS_Store
 
+# VSCode config
+.vscode
+
 # sandbox
 sandbox
 
