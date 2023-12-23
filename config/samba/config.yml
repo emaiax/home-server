@@ -1,0 +1,21 @@
+auth:
+  - user: foo
+    group: foo
+    password: bar
+    uid: 1000
+    gid: 1000
+
+share:
+  - name: public
+    path: /data/shares/public
+    guestok: yes
+    readonly: no
+    browsable: yes
+
+  - name: foo
+    path: /data/shares/foo
+    writelist: foo
+    validusers: foo
+    guestok: no
+    readonly: no
+    browsable: yes

@@ -1,0 +1,12 @@
+---
+samba:
+  name: samba
+  image: crazymax/samba:latest
+  env:
+    TZ: "{{ TZ }}"
+    SAMBA_LOG_LEVEL: "1"
+  networks:
+    - name: host
+  volumes:
+    - "{{ services_path }}/samba/shares:/data/shares"
+    - "{{ services_path }}/samba/config.yml:/data/config.yml"

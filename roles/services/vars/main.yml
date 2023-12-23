@@ -70,6 +70,13 @@ services_configs:
         search: "watchtower_api_key"
         value: "    bearer_token: {{ remote_envfile['WATCHTOWER_HTTP_API_TOKEN'] }}"
 
+  - name: samba
+    folders:
+      - shares
+    configs:
+      - src: samba/config.yml
+        dest: samba/config.yml
+
   - name: grafana
     folders:
       - data
@@ -101,17 +108,18 @@ services_configs:
 support_services:
   - prometheus-blackbox-exporter
   - prometheus-cadvisor-exporter
-  - prometheus-node-exporter
   - prometheus-fastcom-exporter
+  - prometheus-node-exporter
   - prometheus-speedtest-exporter
   - watchtower
 
 services:
   - avahi
-  - homeassistant
-  - prometheus
   - grafana
+  - homeassistant
   - plex
-  - transmission
   - portainer
+  - prometheus
+  - samba
   - traefik
+  - transmission
