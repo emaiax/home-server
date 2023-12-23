@@ -4,6 +4,7 @@
   community.docker.docker_container:
     name: "{{ service.name }}"
     image: "{{ service.image }}"
+    hostname: "{{ service.hostname | default('') }}"
     state: started
     command_handling: correct
     recreate: "{{ service.recreate | default(false) }}"
