@@ -4,6 +4,11 @@ samba:
   image: crazymax/samba:latest
   env:
     TZ: "{{ TZ }}"
+    UID: "{{ PUID }}"
+    GID: "{{ PGID }}"
+    USER: "emaiax"
+    GROUP: "emaiax"
+    PASSWORD: "{{ lookup('onepassword', 'ansible', fields='samba-passwd') }}"
     SAMBA_LOG_LEVEL: "1"
   networks:
     - name: host

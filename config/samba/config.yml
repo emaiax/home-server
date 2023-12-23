@@ -1,9 +1,9 @@
 auth:
-  - user: foo
-    group: foo
-    password: bar
-    uid: 1000
-    gid: 1000
+  - user: ${USER}
+    group: ${GROUP}
+    uid: ${PUID}
+    gid: ${PGID}
+    password: ${PASSWORD}
 
 share:
   - name: public
@@ -11,11 +11,17 @@ share:
     guestok: yes
     readonly: no
     browsable: yes
+    veto: no
+    recycle: no
+    hidefiles: /_*/
 
   - name: foo
-    path: /data/shares/foo
+    path: /data/shares/${USER}
     writelist: foo
     validusers: foo
     guestok: no
     readonly: no
     browsable: yes
+    veto: no
+    recycle: yes
+    hidefiles: /_*/
