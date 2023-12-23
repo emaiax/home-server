@@ -5,7 +5,6 @@
     - env
     - base
     - external
-    # - samba
     - repo
     - avahi
     - docker
