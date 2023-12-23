@@ -10,6 +10,11 @@ services_configs_path: "{{ remote_envfile['HOMESERVER_PATH'] }}/config"
 # store config/data in mounted volumes
 #
 services_configs:
+  - name: avahi
+    configs:
+      - src: avahi/smb.service
+        dest: avahi/smb.service
+
   - name: traefik
     configs:
       - src: traefik/traefik.yml
@@ -63,14 +68,15 @@ services_configs:
 # prometheus exporters and other support services
 #
 support_services:
-  - watchtower
   - prometheus-blackbox-exporter
   - prometheus-cadvisor-exporter
   - prometheus-node-exporter
   - prometheus-fastcom-exporter
   - prometheus-speedtest-exporter
+  - watchtower
 
 services:
+  - avahi
   - homeassistant
   - prometheus
   - grafana
