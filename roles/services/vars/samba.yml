@@ -8,7 +8,7 @@ samba:
     GID: "{{ PGID }}"
     USER: "emaiax"
     GROUP: "emaiax"
-    PASSWORD: "{{ lookup('onepassword', 'ansible', fields='samba-passwd') }}"
+    PASSWORD: "{{ lookup('onepassword', 'ansible', field='samba-passwd') }}"
     SAMBA_LOG_LEVEL: "1"
   networks:
     - name: host

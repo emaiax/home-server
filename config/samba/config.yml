@@ -1,8 +1,8 @@
 auth:
   - user: ${USER}
     group: ${GROUP}
-    uid: ${PUID}
-    gid: ${PGID}
+    uid: ${UID}
+    gid: ${GID}
     password: ${PASSWORD}
 
 share:
@@ -15,10 +15,10 @@ share:
     recycle: no
     hidefiles: /_*/
 
-  - name: foo
+  - name: ${USER}
     path: /data/shares/${USER}
-    writelist: foo
-    validusers: foo
+    writelist: ${USER}
+    validusers: ${USER}
     guestok: no
     readonly: no
     browsable: yes

@@ -72,7 +72,8 @@ services_configs:
 
   - name: samba
     folders:
-      - shares
+      - shares/public
+      - shares/emaiax
     configs:
       - src: samba/config.yml
         dest: samba/config.yml
