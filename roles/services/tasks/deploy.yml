@@ -5,6 +5,7 @@
     name: "{{ service.name }}"
     image: "{{ service.image }}"
     hostname: "{{ service.hostname | default('') }}"
+    capabilities: "{{ service.capabilities | default([]) }}"
     state: started
     command_handling: correct
     recreate: "{{ service.recreate | default(false) }}"

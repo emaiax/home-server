@@ -112,6 +112,7 @@ support_services:
   - prometheus-fastcom-exporter
   - prometheus-node-exporter
   - prometheus-speedtest-exporter
+  - tailscale
   - watchtower
 
 services:

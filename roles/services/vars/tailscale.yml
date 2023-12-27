@@ -1,0 +1,16 @@
+---
+tailscale:
+  name: tailscale
+  image: tailscale/tailscale:latest
+  hostname: tailscale-vpn
+  capabilities:
+    - NET_ADMIN
+    - NET_RAW
+  env:
+    TS_HOSTNAME: "{{ ansible_facts.nodename }}"
+    TS_AUTHKEY: "{{ lookup('onepassword', 'Tailscale', field='Auth Key') }}"
+  networks:
+    - name: host
+  volumes:
+    - /var/lib:/var/lib
+    - /dev/net/tun:/dev/net/tun
